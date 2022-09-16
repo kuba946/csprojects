@@ -1,0 +1,21 @@
+Citroen C1,A,100,5,36
+Fiat Panda,A,85,5,48
+Hyundai i10,A,97,5,20
+Skoda Citigo,A,47,5,34
+Honda Jazz,B,111,5,31
+Hyundai i20,B,118,5,27
+Renault Clio,B,124,5,24
+Hyundai i30,C,160,5,26
+Skoda Octavia,C,140,5,18
+Kia Ceed,C,154,5,16
+VW Golf,C,161,5,16
+Skoda Superb,D,226,5,11
+Volkswagen Sharan,D,284,7,17
+Opel Zafira,D,178,7,16
+Audi TT,C,356,4,14
+Volkswagen Arteon,D,189,5,15
+Subaru Outback,D,279,5,11
+Volkswagen Crafter,E,487,9,12
+Rolls-Royce Wraith,F,780,4,2
+Bentley Continental GT,F,821,4,1
+Lamborghini Huracan,D,879,2,2

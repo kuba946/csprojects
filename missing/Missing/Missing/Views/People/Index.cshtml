@@ -1,0 +1,114 @@
+﻿@using Missing.Models
+@*@model IEnumerable<Missing.Models.Person>*@
+@model string
+
+@{
+    ViewBag.Title = "Index";
+    AjaxOptions ajax = new AjaxOptions
+    {
+        UpdateTargetId = "cos1",
+        LoadingElementId = "cos2",
+        LoadingElementDuration = 5000,
+        Confirm = "Realizujesz zadanie bar...",
+        Url = Url.Action("GetData"),
+    };
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    function OnComplete(request, status) { alert("Jest " + status); }
+    function OnBegin() { alert("rozpoczęcie"); }
+    function OnSuccess(data) { alert("sukces" + data); }
+</script>
+
+<h2>Missing People</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Ajax.BeginForm(ajax))
+{
+    <div>
+        @Html.DropDownList("selectedSex", new SelectList(new[] { "ALL", "Male", "Female" }))
+        <button type="submit">Show</button>
+    </div>
+}
+
+<div>
+    @foreach (string sex in new List<string>(new[] { "ALL", "Male", "Female" }))
+    {
+
+        @Ajax.ActionLink(sex, "Index",
+         new { selectedSex = sex },
+         new AjaxOptions
+         {
+             UpdateTargetId = "cos1",
+             Url = Url.Action("GetData", new { selectedSex = sex }),
+             OnComplete = "OnComplete",
+             OnBegin = "OnBegin",
+             OnSuccess = "OnSuccess"
+         }, new { @class = "body-content" })
+    }
+</div>
+
+<div id="cos2" style="display:none">Dajesz.....</div>
+<div id="cos1">
+    @Html.Action("GetData", new { selectedSex = Model })
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastPlace)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/" + item.Picture)" style="height: 150px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastPlace)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IdPerson }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdPerson }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdPerson })
+                </td>
+            </tr>
+        }
+    </table>*@
+</div>
+

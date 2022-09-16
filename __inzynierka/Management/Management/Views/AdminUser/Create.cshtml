@@ -1,0 +1,107 @@
+﻿@model Management.Models.AdminUserDto
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
+    ViewData["Title"] = "User Create View";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+        Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_before.cshtml");
+
+        <div class="container">
+            <form asp-controller="AdminUser" asp-action="Create">
+                <div class="row">
+                    <div class="col-xl-6 col-md-24">
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label asp-for="AdminUserNameDto" class="form-label">User Name</label>
+                                <input asp-for="AdminUserNameDto" class="form-control"/>
+                                <span asp-validation-for="AdminUserNameDto" class="text-danger"></span>
+                                @{
+                                    if (!Model.isUserNameFree)
+                                    {
+                                        <span asp-validation-for="AdminUserNameDto" class="text-danger">The User Name is busy!</span>;
+                                    }
+                                }
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdminUserFirstNameDto" class="form-label">First Name</label>
+                                <input asp-for="AdminUserFirstNameDto" class="form-control"/>
+                                <span asp-validation-for="AdminUserFirstNameDto" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdminUserLastNameDto" class="form-label">Last Name</label>
+                                <input asp-for="AdminUserLastNameDto" class="form-control"/>
+                                <span asp-validation-for="AdminUserLastNameDto" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdminUserRoleIdDto" class="form-label">Role</label>
+                                <select asp-for="AdminUserRoleIdDto" class="form-select" aria-label="Default select example">
+                                @{
+                                    foreach (var item in @Model.Roles)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                }
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdminUserPassword" class="form-label">Password</label>
+                                <input asp-for="AdminUserPassword" class="form-control" class="form-control" aria-required="true" id="inputPassword" type="password" placeholder="Change a password" />
+                                <span asp-validation-for="AdminUserPassword" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="AdminUserConfirmPassword" class="form-label">Confirm Password</label>
+                                <input asp-for="AdminUserConfirmPassword" class="form-control" class="form-control" aria-required="true"  id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                <span asp-validation-for="AdminUserConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="float:left; margin-right: 5px;">
+                    <input type="submit" value="Save" class="btn btn-primary" style="float:left; margin-right: 5px;"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                </div>
+            </form>
+        </div>
+
+        //CREATE TOAST (below)
+        <div class="col-xl-12 col-md-24">
+            <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
+                <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" style="font-size:18px">
+                <div class="toast-header">
+                    <img src="@Href("~/assets/img/green_checked_mark.jpg")" class="rounded me-2" alt="..." width="40">
+                    <strong class="me-auto">Succeed</strong>
+                    <small>just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    User has been created
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            if ('@(Model.isAfterCreate)'=="True") {
+                $(document).ready(function () {
+                    $(".toast").toast('show');
+                });
+            };
+
+        </script>
+        
+
+        Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_after.cshtml");
+}
+else
+{
+    Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_else.cshtml");
+
+}

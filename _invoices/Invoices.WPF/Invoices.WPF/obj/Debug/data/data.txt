@@ -1,0 +1,39 @@
+FAKTURA VAT NR 
+ORYGINAŁ/KOPIA 
+DATA I MIEJSCE WYSTAWIENIA :
+DATA SPRZEDAŻY :
+SPRZEDAWCA :
+JAKUB ZYGMUNT
+01-100 WARSZAWA, Popiełuszki 32
+NIP: 9898989898
+NABYWCA:
+Marcin Zdzisław
+01-100 WARSZAWA, Polna 34
+NIP: 9898989898
+Sposób zapłaty : przelew
+Numer Konta: PL39188010225973429368118413
+Lp.
+Nazwa usługi
+Symbol SWW
+Cena jednostkowa netto
+Wartość usługi netto
+Podatek
+Wartość usługi brutto
+%
+kwota
+1.
+Wykonanie usług testowania oprogramowania
+
+27346
+23
+
+
+
+W tym:
+
+
+
+Razem:
+DO ZAPŁATY:               
+SPRZEDAWCA:
+NABYWCA:

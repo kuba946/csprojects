@@ -1,0 +1,12 @@
+C:\Users\HP\source\repos\bills\Bills.Logic\bin\Release\Bills.Logic.dll
+C:\Users\HP\source\repos\bills\Bills.Logic\bin\Release\Bills.Logic.pdb
+C:\Users\HP\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.dll
+C:\Users\HP\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.pdb
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\bin\Release\Bills.Logic.dll
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\bin\Release\Bills.Logic.pdb
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.dll
+C:\Users\Lenovo\source\repos\bills\Bills.Logic\obj\Release\Bills.Logic.pdb

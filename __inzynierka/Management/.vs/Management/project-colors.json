@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8f9861d5-9062-4929-b5c2-26a5557104d7": {
+      "ProjectGuid": "8f9861d5-9062-4929-b5c2-26a5557104d7",
+      "DisplayName": "Management",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "6ded6ba0-2f7b-4075-a4c3-6e06b7c9c83a": {
+      "ProjectGuid": "6ded6ba0-2f7b-4075-a4c3-6e06b7c9c83a",
+      "DisplayName": "Tests",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

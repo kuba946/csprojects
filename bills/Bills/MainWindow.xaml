@@ -1,0 +1,262 @@
+﻿<Window x:Class="Bills.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bills"
+        mc:Ignorable="d"
+        Title="Bills" Height="450" Width="600" Icon="Icon1.ico">
+    <Window.Resources>
+        <Storyboard x:Key="animacja">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.Content)" Storyboard.TargetName="saveButton">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value=" Saved! :)"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.9" Value=" Saved! :)"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="Save"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="saveButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FF05F56D"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.9" Value="#FF05F56D"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FFF5D011"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <!--<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource animacja}"/>
+        </EventTrigger>-->
+    </Window.Triggers>
+    <Grid x:Name="main" Background="#FF88F2F2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="197*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="150*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="2" Content="FV" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="orangeGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="orangeCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="orangeLab" Grid.Column="1" Content="Orange" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="orangeFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="orangeCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="leasingGrid" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="leasingCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click" Margin="7,6"/>
+                <Label x:Name="leasingLab" Grid.Column="1" Content="Leasing" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="leasingFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="leasingCash" Grid.Column="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged"  GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus" Margin="10,4"/>
+            </Grid>
+            <Grid x:Name="gapGrid" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="gapCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="gapLab" Grid.Column="1" Content="GAP" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="gapFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="gapCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="wwsiGrid" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="wwsiCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="wwsiLab" Grid.Column="1" Content="WWSI" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="wwsiFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="wwsiCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="orlenGrid" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="orlenCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="orlenLab" Grid.Column="1" Content="Orlen" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="orlenFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="orlenCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="softwareplantGrid" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="softwareplantCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="softwareplantLab" Grid.Column="1" Content="SoftwarePlant" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="softwareplantFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="softwareplantCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="tutloGrid" Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="tutloCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="tutloLab" Grid.Column="1" Content="Tutlo" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="tutloFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="tutloCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="zusGrid" Grid.Row="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="zusCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="zusLab" Grid.Column="1" Content="ZUS" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="zusFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="zusCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="ksiegowaGrid" Grid.Row="9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="ksiegowaCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="ksiegowaLab" Grid.Column="1" Content="Księgowa" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <CheckBox x:Name="ksiegowaFV" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="orangeFV_Click" Background="#FFC21795" BorderBrush="{x:Null}"/>
+                <TextBox x:Name="ksiegowaCash" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="40" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Label x:Name="thisMonth" Grid.Row="10" Content="2020-09" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Print" FontSize="20"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="150*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid x:Name="telefonyGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="telefonyCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="telefonyLab" Grid.Column="1" Content="telefony" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="telefonyCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="kredytGrid" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="kredytCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="kredytLab" Grid.Column="1" Content="kredyt" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="kredytCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="innogyGrid" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="innogyCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="innogyLab" Grid.Column="1" Content="Innogy" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="innogyCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="czynszGrid" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="czynszCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="czynszLab" Grid.Column="1" Content="czynsz" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="czynszCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="pakietyGrid" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="pakietyCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="pakietyLab" Grid.Column="1" Content="Pakiety" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="pakietyCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <Grid x:Name="zlobekGrid" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="zlobekCheck" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFF6426D" BorderBrush="{x:Null}" Click="orangeCheck_Click"/>
+                <Label x:Name="zlobekLab" Grid.Column="1" Content="Żłobek" VerticalAlignment="Center" MouseLeftButtonDown="orangeLab_MouseLeftButtonDown"/>
+                <TextBox x:Name="zlobekCash" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="20" Width="60" Background="#FF05F56D" BorderBrush="{x:Null}" TextChanged="orangeCash_TextChanged" GotFocus="orangeCash_GotFocus" LostFocus="orangeCash_LostFocus"/>
+            </Grid>
+            <TextBlock x:Name="sumTextBlock" Grid.Row="8" TextAlignment="Center" Background="#FF05F56D" FontSize="20" Margin="30,0,30,0"/>
+            <Button x:Name="saveButton" Grid.Row="10" Content="Save" FontFamily="Segoe Print" FontSize="20" Height="50" Width="100" Background="#FFF5D011" BorderBrush="{x:Null}" Click="saveButton_Click"/>
+        </Grid>
+        <DataGrid x:Name="data" Grid.Column="3" AutoGenerateColumns="False" Width="120" Height="216" VerticalAlignment="Top" Margin="39,20,38,0" Background="#FF3C8F8F" RowBackground="#FF3C8F8F" Foreground="#FFF5D011">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="20"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="92"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

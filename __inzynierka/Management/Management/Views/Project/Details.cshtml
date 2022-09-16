@@ -1,0 +1,184 @@
+﻿@model Management.Models.IndexModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Project Details View";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+        Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_before.cshtml");
+
+        <div class="container">
+`           <form asp-action="Details">
+                <div class="row">
+                    <div class="col-xl-6 col-md-24">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput" class="form-label">
+                                    @{
+                                        string projectName = "Project Name";
+                                        string issueName = "Issue Name";
+                                        if (@Model.ActualIssue.isProject) { @projectName; }
+                                        else { @issueName; }
+                                    }
+                                </label>
+                                <input asp-for="IssueNameDto" class="form-control" value="@Model.ActualIssue.Name"/>
+                            </div>
+                                @if (!@Model.ActualIssue.isProject)
+                                {
+                                    <div class="mb-3">
+                                        <label asp-for="IssueParentNameDto" class="control-label">Project</label>
+                                        <input asp-for="IssueParentNameDto" class="form-control" value="@Model.ActualIssue.Parent.Name" disabled/>
+                                    </div>
+                                }
+                            <div class="mb-3">
+                                <label asp-for="IssueStatusNameDto" class="control-label">Status</label>
+                                <select asp-for="IssueStatusNameDto" class="form-select" aria-label="Default select example">
+                                    @{
+                                        if (@Model.ActualIssue.Status.Name == "Open")
+                                        {
+                                            <option selected>@Model.ActualIssue.Status.Name</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Done">Done</option>
+                                        }
+                                        else if (@Model.ActualIssue.Status.Name == "In Progress")
+                                        {
+                                            <option value="Open">Open</option>
+                                            <option selected>@Model.ActualIssue.Status.Name</option>
+                                            <option value="Done">Done</option>
+                                        }
+                                        else if (@Model.ActualIssue.Status.Name == "Done")
+                                        {
+                                            <option value="Open">Open</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option selected>@Model.ActualIssue.Status.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="IssueStartDateDto" class="control-label">Start date</label>
+                                @{
+                                    var sdDt = @Model.ActualIssue.Start;
+                                    string sdD = "";
+                                    if (sdDt is not null)
+                                    {
+                                        sdD = sdDt.ToString().Substring(6, 4) + "-"
+                                        + sdDt.ToString().Substring(3, 2) + "-"
+                                        + sdDt.ToString().Substring(0, 2);
+                                    }
+                                }
+                                <input asp-for="IssueStartDateDto" type="date" class="form-control" value="@sdD"/>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="IssueEndDateDto" class="control-label">End date</label>
+                                @{
+                                    var edDt = @Model.ActualIssue.End;
+                                    string edD = "";
+                                    if (edDt is not null)
+                                    {
+                                        edD = edDt.ToString().Substring(6, 4) + "-"
+                                        + edDt.ToString().Substring(3, 2) + "-"
+                                        + edDt.ToString().Substring(0, 2);
+                                    }
+                                }
+                                <input asp-for="IssueEndDateDto" type="date" class="form-control" value="@edD"/>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="IssueAssigneeNameDto" class="control-label">Assignee</label>
+                                <select asp-for="IssueAssigneeNameDto" class="form-select" aria-label="Default select example">
+                                    @{
+                                        <option selected>@Model.ActualIssue.Assignee.FirstName @Model.ActualIssue.Assignee.LastName</option>
+                                        foreach (var item in @Model.Users)
+                                        {
+                                            if (@item.UserName != @Model.ActualIssue.Assignee.UserName && @item.Role.Name != "User")
+                                            {
+                                                <option value="@item">@item.FirstName @item.LastName</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-24">
+                        <div class="mb-3">
+                            <label asp-for="IssueDescriptionDto" class="control-label">Description</label>
+                            <textarea asp-for="IssueDescriptionDto" class="form-control" rows="20" style="resize: none;">@Model.ActualIssue.Description</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="float:left; margin-right: 5px;">
+                    <input type="submit" value="Save" class="btn btn-primary" style="float:left; margin-right: 5px;"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                </div>
+
+
+                
+                
+
+
+
+            </form>
+            <!-- Delete Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Are you sure?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <form asp-action="Delete" asp-route-id="@Model.ActualIssue.Id">
+                                <input type="submit" value="Yes" class="btn btn-danger" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        //SAVE TOAST (below)
+        <div class="col-xl-12 col-md-24">
+            <div class="position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11">
+                <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" style="font-size:18px">
+                <div class="toast-header">
+                    <img src="@Href("~/assets/img/green_checked_mark.jpg")" class="rounded me-2" alt="..." width="40">
+                    <strong class="me-auto">Succeed</strong>
+                    <small>just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Project has been saved
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            if ('@(Model.isAfterEdit)'=="True") {
+                $(document).ready(function () {
+                    $(".toast").toast('show');
+                });
+            };
+
+        </script>
+        
+
+        Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_after.cshtml");
+}
+else
+{
+    Html.RenderPartial("~/Views/Shared/_SignedIn/_SignedIn_else.cshtml");
+
+}

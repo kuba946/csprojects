@@ -1,0 +1,43 @@
+﻿<Window x:Class="Invoices.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Invoices.WPF"
+        mc:Ignorable="d"
+        Title="Invoices" Height="210" Width="300">
+    <Window.Resources>
+        <Storyboard x:Key="animacja">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="invoice">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FF14F732"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.9" Value="#FF14F732"/>
+                <EasingColorKeyFrame KeyTime="0:0:1" Value="#FFE2C458"/>
+            </ColorAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentControl.Content)" Storyboard.TargetName="invoice">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="Wystawiono!"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.9" Value="Wystawiono!"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="Wystaw fakturę"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <!--<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource animacja}"/>
+        </EventTrigger>-->
+    </Window.Triggers>
+    <Grid x:Name="main" Background="#FF96ABB5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox x:Name="percentage" Width="100" Text="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="18" Background="#FFF2D9C6" Foreground="#FF353F42" GotFocus="percentage_GotFocus" LostFocus="percentage_LostFocus" />
+            <Label Width="40" Content="%" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="18" Foreground="#FF353F42"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="invoice" Width="140" Content="Wystaw fakturę" FontFamily="Segoe Print" FontSize="14" Background="#FFE2C458" BorderBrush="{x:Null}" Foreground="#FF353F42" Click="invoice_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

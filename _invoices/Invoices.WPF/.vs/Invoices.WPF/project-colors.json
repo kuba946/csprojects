@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d3483d9a-e99f-4dc1-8ee0-7bff2e983750": {
+      "ProjectGuid": "d3483d9a-e99f-4dc1-8ee0-7bff2e983750",
+      "DisplayName": "Invoices.WPF",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
